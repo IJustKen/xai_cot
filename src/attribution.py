@@ -77,8 +77,19 @@ def attribute_raw_attention(
     input_ids = inputs["input_ids"].to(device)
     tokens = [tokenizer.decode([tid]) for tid in input_ids[0].tolist()]
 
+    if hasattr(model.config, "_attn_implementation"):
+        model.config._attn_implementation = "eager"
+    
+    model.config.output_attentions = True
+
     with torch.no_grad():
         outputs = model(input_ids, output_attentions=True)
+
+    if not outputs.attentions:
+        raise ValueError(
+            f"outputs.attentions is empty! Model is using attn_implementation='{getattr(model.config, '_attn_implementation', 'unknown')}'. "
+            "Please reload the model with attn_implementation='eager'."
+        )
 
     # Last layer attentions: shape [batch, num_heads, seq_len, seq_len]
 
