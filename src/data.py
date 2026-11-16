@@ -51,7 +51,7 @@ def format_pair(item_id: int, dataset_name: str, question: str, ground_truth: st
 def fetch_bbh_task(task_name: str, count: int) -> List[Dict[str, Any]]:
     # to download tasks from HF - sports_understanding, navigate, web_of_lies
     try:
-        ds = load_dataset("lukaemon/bbh", task_name, split="test")
+        ds = load_dataset("lukaemon/bbh", task_name, split="test", trust_remote_code=True)
         samples = []
         for row in ds:
             ip = row["input"].strip()
@@ -78,7 +78,7 @@ def fetch_bbh_task(task_name: str, count: int) -> List[Dict[str, Any]]:
 def fetch_bbq_samples(count: int) -> List[Dict[str, Any]]:
     # to download tasks from HF
     try:
-        ds = load_dataset("heegyu/bbq", "Age", split="test")
+        ds = load_dataset("heegyu/bbq", "Age", split="test", trust_remote_code=True)
         samples = []
         for row in ds:
             context = row.get("context", "")
