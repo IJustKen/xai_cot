@@ -78,7 +78,7 @@ def fetch_bbh_task(task_name: str, count: int) -> List[Dict[str, Any]]:
 def fetch_bbq_samples(count: int) -> List[Dict[str, Any]]:
     # to download tasks from HF
     try:
-        ds = load_dataset("heegyu/bbq", "Age", split="test", trust_remote_code=True)
+        ds = load_dataset("SetFit/bbq", "Age", split="test", trust_remote_code=True)
         samples = []
         for row in ds:
             context = row.get("context", "")
