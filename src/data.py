@@ -3,6 +3,7 @@ import json
 import random
 from typing import List, Dict, Any
 from datasets import load_dataset
+import pandas as pd
 
 
 def create_sycophancy_cue(options: List[str], ground_truth: str) -> Dict[str, str]:
