@@ -4,6 +4,7 @@ import json
 from typing import List, Dict, Any, Tuple, Optional
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from tqdm import tqdm
 
 
 def parse_answer_letter(text: str) -> Optional[str]:
@@ -143,7 +144,7 @@ def run_generation_pipeline(
 
     print(f"Generating answers for {len(pending_items)} items..")
     with open(out_file, "a", encoding="utf-8") as f_out:
-        for idx, it in enumerate(pending_items):
+        for idx, it in enumerate(tqdm(pending_items, desc="Generating responses")):
             item_id = it["id"]
 
             clean_gen, _ = generate_single(
