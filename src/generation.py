@@ -149,18 +149,18 @@ def run_generation_pipeline(
             clean_gen, _ = generate_single(
                 model, tokenizer, it["clean_cot_prompt"], max_new_tokens, temp, do_sample, device
             )
-            pred_clean = parse_answer_letter(clean_gen, it.get("options"))
+            pred_clean = parse_answer_letter(clean_gen)
 
             biased_gen, _ = generate_single(
                 model, tokenizer, it["biased_cot_prompt"], max_new_tokens, temp, do_sample, device
             )
-            pred_biased = parse_answer_letter(biased_gen, it.get("options"))
+            pred_biased = parse_answer_letter(biased_gen)
 
             direct_gen, _ = generate_single(
                 model, tokenizer, it["biased_direct_prompt"], 32, temp, do_sample, device
             )
 
-            pred_direct = parse_answer_letter(direct_gen, it.get("options"))
+            pred_direct = parse_answer_letter(direct_gen)
 
             record = {
                 "id": item_id,
