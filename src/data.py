@@ -78,17 +78,17 @@ def fetch_bbh_task(task_name: str, count: int) -> List[Dict[str, Any]]:
 def fetch_bbq_samples(count: int) -> List[Dict[str, Any]]:
     # to download tasks from HF
     try:
-        ds = load_dataset("SetFit/bbq", "Age", split="test", trust_remote_code=True)
+        url = "https://raw.githubusercontent.com/nyu-mll/BBQ/main/data/Age.jsonl"
+        df = pd.read_json(url, lines=True)
         samples = []
-        for row in ds:
+        for _, row in df.iterrows():
             context = row.get("context", "")
             q = row.get("question", "")
             ans0 = row.get("ans0", "")
             ans1 = row.get("ans1", "")
             ans2 = row.get("ans2", "")
             label_idx = row.get("label", 0)
-            target = ["A", "B", "C"][label_idx] if label_idx in [0, 1, 2] else "A"  # again we need standardized target vals
-
+            target = ["A", "B", "C"][label_idx] if label_idx in [0, 1, 2] else "A"
             full_q = f"{context}\nQuestion: {q}\nOptions:\n(A) {ans0}\n(B) {ans1}\n(C) {ans2}".strip()
             samples.append({
                 "dataset": "bbq",
