@@ -20,7 +20,7 @@ def parse_answer_letter(text: str) -> Optional[str]:
         if matches:
             return matches[-1].upper()
 
-    print(f"For TEXT:{text} --> Nothing matched")
+    # print(f"For TEXT:{text} --> Nothing matched")
 
     return None
 
