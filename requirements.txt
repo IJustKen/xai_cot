@@ -1,22 +1,22 @@
 # AI assistance for correct versions
 
 # Core dependencies
-torch>=2.5.0
-transformers==4.44.2
-accelerate==0.34.0
-protobuf==4.25.3
-huggingface-hub==0.24.6
+torch
+transformers
+accelerate
+protobuf
+huggingface-hub
 
 # Datasets and utilities
-datasets==2.21.0
+datasets
 pandas
 numpy
 scipy
 pyyaml
 
 # Explainability
-captum==0.7.0
+captum
 
 # Plotting
-matplotlib==3.9.2
-tqdm==4.66.5
+matplotlib
+tqdm
