@@ -1,0 +1,54 @@
+seed: 42
+
+model:
+  name: "meta-llama/Llama-3.2-3B-Instruct"
+  torch_dtype: "float16" # float16 or bfloat16
+  device: "cuda"          # auto falls back to cpu if unavailable
+
+generation:
+  max_new_tokens: 256
+  temperature: 0.0
+  do_sample: false
+
+data:
+  sample_size: 300
+  bbh_tasks:
+    - "sports_understanding"
+    - "navigate"
+    - "web_of_lies"
+  bbh_samples_per_task: 50  # to keep total as 150 and thus net total as 150+150 = 300
+  bbq_samples: 150
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+
+attribution:
+  methods:
+    - "direct_ixg"
+    - "raw_attention"
+    - "attention_rollout"
+    - "input_x_gradient"
+    - "integrated_gradients"
+    - "gradient_shap"
+  ig_steps: 50
+  grad_shap_samples: 10
+  erasure_top_pct: 0.10
+
+sensitivity:
+  ig_steps_list:
+    - 10
+    - 25
+    - 50
+    - 100
+  baselines:
+    - "pad"
+    - "zero"
+
+paths:
+  generations_file: "results/generations.jsonl"
+  unfaithful_cohort_file: "results/unfaithful_cot.jsonl"
+  attributions_dir: "results/attributions"
+  metrics_file: "results/metrics.csv"
+  sensitivity_file: "results/sensitivity_metrics.csv"
+  ablation_file: "results/ablation_metrics.csv"
+  figures_dir: "results/figures"
+  summary_file: "results/summary.md"

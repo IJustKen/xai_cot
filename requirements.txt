@@ -1,0 +1,22 @@
+# Core dependencies
+torch==2.4.0
+transformers==4.44.2
+accelerate==0.34.0
+sentencepiece==0.2.0
+protobuf==4.25.3
+huggingface-hub==0.24.6
+
+# Datasets and utilities
+datasets==2.21.0
+pandas==2.2.2
+numpy==1.26.4
+scipy==1.13.1
+pyyaml==6.0.2
+
+# Explainability
+captum==0.7.0
+
+# Plotting
+matplotlib==3.9.2
+seaborn==0.13.2
+tqdm==4.66.5
