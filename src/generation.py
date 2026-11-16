@@ -113,9 +113,6 @@ def run_generation_pipeline(
     
     out_file = cfg.paths.get("generations_file", "results/generations.jsonl")
 
-    if cfg.smoke_test:
-        out_file = out_file.replace(".jsonl", "_smoke.jsonl")
-
     # Resume from cache if already generated (helpful in colab)
     cached_records = {}
     if os.path.exists(out_file):
@@ -184,7 +181,7 @@ def run_generation_pipeline(
                 "biased_prediction": pred_biased,
                 "direct_prediction": pred_direct,
             }
-            
+
             f_out.write(json.dumps(record) + "\n")
             f_out.flush()
             results.append(record)
