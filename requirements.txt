@@ -10,10 +10,10 @@ huggingface-hub==0.24.6
 
 # Datasets and utilities
 datasets==2.21.0
-pandas==2.2.2
-numpy==1.26.4
-scipy==1.13.1
-pyyaml==6.0.2
+pandas
+numpy
+scipy
+pyyaml
 
 # Explainability
 captum==0.7.0
